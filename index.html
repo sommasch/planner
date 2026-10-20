@@ -1615,7 +1615,7 @@ function render(){
     f.innerHTML=`<input type="text" placeholder="เพิ่มงาน… (พรุ่งนี้ 14:00 @ชื่อ)" title="พิมพ์วันที่ เวลา @ชื่อ !สูง หรือ ทุกวันจันทร์ ได้ เช่น ส่งรายงาน พรุ่งนี้ 14:00 @สมชาย" maxlength="80" aria-label="เพิ่มงานวัน${DN[i]}"><button type="submit" aria-label="เพิ่มงาน">${ic("plus",16)}</button>`;
     f.firstChild.onfocus=()=>{tgt=i;$("tday").value=i};
     f.onsubmit=e=>{e.preventDefault();const v=f.firstChild.value.trim();if(!v)return;f.firstChild.value="";quickAdd(v,addDays(ws,i)).then(()=>{const c=$("days").children[i],nf=c&&c.querySelector("input[type=text]");nf&&nf.focus()})};
-    el.append(f,ul);if(!list.length){const e=document.createElement("div");e.className="empty";e.textContent="ยังไม่มีงาน — พิมพ์แล้วกด Enter";el.append(e)}days.append(el);
+    el.append(f,ul);if(!list.length){const e=document.createElement("div");e.className="empty";e.textContent="ยังไม่มีงาน";el.append(e)}days.append(el);
   });
 
   const hb=$("hab");hb.innerHTML=`<tr><th style="text-align:left">Habit</th>${SH.map(d=>`<th>${d}</th>`).join("")}<th>Progress</th><th></th></tr>`;
