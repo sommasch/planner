@@ -1971,7 +1971,11 @@ $("tdlg").addEventListener("dragover",e=>e.preventDefault());
 $("tdlg").addEventListener("drop",e=>{e.preventDefault();addImages(e.dataTransfer.files)});
 $("lbclose").onclick=()=>$("lb").close();
 $("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").close()});
-/* ================= Sign-in (optional, Google) ================= */
+
+  
+  /* ================= Sign-in (optional, Google) ================= */
+const SESSION_MS = 8 * 60 * 60 * 1000;  // ← ใส่ตรงนี้
+const TOK_KEY = "planner-tok", SESS_KEY = "planner-sess";// ... ต่อด้วย rawFetch, onCred, initAuth ฯลฯ
 const rawFetch=window.fetch.bind(window);
 window.fetch=async(u,o)=>{const r=await rawFetch(u,o);if(idToken&&typeof u==="string"&&API_URL&&u.startsWith(API_URL)){r.clone().json().then(j=>{if(j&&j.error==="unauthorized")needLogin()}).catch(()=>{})}return r};
 function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.async=true;s.onload=res;s.onerror=()=>rej(new Error("โหลดสคริปต์ Google ไม่สำเร็จ"));document.head.append(s)})}
